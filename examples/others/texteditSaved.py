@@ -276,7 +276,7 @@ def closeWithoutSaving(lastWindowtitle):
     while True:
         frontWindow = utilities.findElementByXPath(driver, "/AXApplication/AXWindow[0]")
         if frontWindow == None:
-            print(frontWindow == None)
+            print('frontWindow == None')
             break
         fwTitle = frontWindow.get_attribute("AXTitle")
         print(fwTitle)
