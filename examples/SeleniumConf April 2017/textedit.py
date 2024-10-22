@@ -23,7 +23,7 @@ def createWindow(x, y, width, height):
     
     window = utilities.findElementByXPath(driver, "/AXApplication[@AXTitle='TextEdit']/AXWindow[0]")
     if window == None:
-        print "No front window!"
+        print('No front window!')
         return False
     driver.switch_to.window
     
@@ -37,11 +37,11 @@ def dragWordInTextView(view, viewOffsetX, viewOffsetY, dragOffsetX, dragOffsetY)
     time.sleep(0.5) # avoid unwanted triple-click
     
     # Save current mouse speed
-    print driver.get_cookies()
+    print(driver.get_cookies())
     savedMouseCookie = driver.get_cookie('mouse_speed')
-    print savedMouseCookie
+    print(savedMouseCookie)
     driver.add_cookie({'name': 'mouse_speed', 'value': 20})
-    print driver.get_cookies()
+    print(driver.get_cookies())
     
     ActionChains(driver).click_and_hold().perform()
     time.sleep(1.5) # give time for the dragging session to start (cursor == arrow)
@@ -101,6 +101,6 @@ ActionChains(driver).key_down(Keys.COMMAND).send_keys('q').key_up(Keys.COMMAND).
 
 
 # quit the webdriver instance
-print('Quitting the WebDriver session'
+print('Quitting the WebDriver session')
 driver.quit()
 

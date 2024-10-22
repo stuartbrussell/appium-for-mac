@@ -31,13 +31,13 @@ desiredCapabilities = {'platform': 'Mac', 'cookies': defaultCookies}
 # Returns: WebDriver instance
 def startWebDriverSession(hostURL):
     capabilities = desiredCapabilities
-    print('Starting the WebDriver session at ' + hostURL + 'capabilities:'
+    print('Starting the WebDriver session at ' + hostURL + 'capabilities:')
     #print capabilities
     try:
         driver = webdriver.Remote( command_executor=hostURL, desired_capabilities=capabilities)
     except Exception as e:
-        print('Exception in startWebDriverSession:', e
-        print('Make sure AppiumForMac is running.'
+        print('Exception in startWebDriverSession:', e)
+        print('Make sure AppiumForMac is running.')
         return;
 
     return driver
@@ -47,14 +47,14 @@ def startWebDriverSession(hostURL):
 def startWebDriverSessionCookies(hostURL, cookies):
     desiredCapabilities = {'platform': 'Mac', 'cookies': cookies}
     capabilities = desiredCapabilities
-    print('Starting the WebDriver session at ' + hostURL + 'capabilities:'
+    print('Starting the WebDriver session at ' + hostURL + 'capabilities:')
     #print capabilities
     try:
         driver = webdriver.Remote( command_executor=hostURL, desired_capabilities=capabilities)
     except Exception as e:
-        print('Exception in startWebDriverSession:', e
-        print('Make sure AppiumForMac is running.'
-        return;
+        print('Exception in startWebDriverSession:', e)
+        print('Make sure AppiumForMac is running.')
+        return
     
     return driver
 # Convenience method that catches exceptions.
