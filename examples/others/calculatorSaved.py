@@ -13,7 +13,7 @@ basicGroupPath = windowPath + "/AXGroup[1]"
 scientificGroupPath = windowPath + "/AXGroup[2]"
 programmerGroupPath = windowPath + "/AXGroup[1]"
 
-print('Starting the WebDriver session'
+print('Starting the WebDriver session')
 defaultLoopDelay_sec = 1.00
 defaultCommandDelay_sec = 0.100
 defaultImplicitTimeout_sec = 3.000
@@ -33,10 +33,10 @@ desiredCapabilities = {'platform': 'Mac', 'cookies': defaultCookies}
 driver = webdriver.Remote( command_executor='http://localhost:4622/wd/hub', desired_capabilities=desiredCapabilities)
 
 
-print('Opening the "Calculator" app'
+print('Opening the "Calculator" app')
 driver.get("Calculator")
 
-# print('Selecting the 1st Window'
+# print('Selecting the 1st Window')
 # driver.switch_to_window("1")
 
 def numToAXPath(num):
@@ -109,90 +109,90 @@ def clickElement(element):
         element.click()
 
 def do_some_calculations_with_clicks():
-    print('Clearing the calculator'
+    print('Clearing the calculator')
     clickElement(button_clear)
 
     rand1 = randint(0,1000)
     rand2 = randint(0,1000)
 
-    print('Entering the first number'
+    print('Entering the first number')
     for num in str(rand1):
         n = numToAXPath(int(num))
-        print str(num) + ' --> ' + str(n)
+        print(str(num) + ' --> ' + str(n))
         clickElement(driver.find_element_by_xpath(n))
 
-    print('Clicking the "+" button'
+    print('Clicking the "+" button')
     clickElement(button_plus)
 
-    print('Entering the second number'
+    print('Entering the second number')
     for num in str(rand2):
         n = numToAXPath(int(num))
-        print str(num) + ' --> ' + str(n)
+        print(str(num) + ' --> ' + str(n))
         clickElement(driver.find_element_by_xpath(n))
 
-    print('Clicking the "=" button'
+    print('Clicking the "=" button')
     clickElement(button_equals)
 
-    print('Reading result from screen'
+    print('Reading result from screen')
     ActionChains(driver).move_to_element(text_result).perform()
     answer = text_result.text
 
     if int(answer) == (rand1 + rand2):
-      print('Correct Result: ' + answer
+      print('Correct Result: ' + answer)
     else:
-      print('Incorect Result: ' + answer
+      print('Incorect Result: ' + answer)
 
 
 def do_some_calculations_with_keystrokes():
-    print('Clearing the calculator'
+    print('Clearing the calculator')
     clickElement(button_clear)
     
     rand1 = randint(0,1000)
     rand2 = randint(0,1000)
     
-    print('Typing the first number'
+    print('Typing the first number')
     ActionChains(driver).send_keys(str(rand1)).perform()
     
-    print('Typing the "+" button'
+    print('Typing the "+" button')
     ActionChains(driver).send_keys("+").perform()
     
-    print('Typing the second number'
+    print('Typing the second number')
     ActionChains(driver).send_keys(str(rand2)).perform()
 
-    print('Typing the "=" button'
+    print('Typing the "=" button')
     ActionChains(driver).send_keys("=").perform()
     
-    print('Reading result from screen'
+    print('Reading result from screen')
     ActionChains(driver).move_to_element(text_result).perform()
     answer = text_result.text
     
     if int(answer) == (rand1 + rand2):
-        print('Correct Result: ' + answer
+        print('Correct Result: ' + answer)
     else:
-        print('Incorect Result: ' + answer
+        print('Incorect Result: ' + answer)
 
 def enableSpeech(enable):
     utilities.selectMenuItemFromPopUpButton("Speech", ["Speak Button Pressed"], " and @AXMenuItemMarkChar!=''")
     utilities.selectMenuItemFromPopUpButton("Speech", ["Speak Result"], " and @AXMenuItemMarkChar=''")
 
-print('Finding Some Elements...'
+print('Finding Some Elements...')
 button_clear = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='clear']")
 button_plus = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='add']")
 button_equals = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='equals']")
 text_result = driver.find_element_by_xpath(resultGroupPath + "/AXStaticText[@AXDescription='main display']")
 
-print('Doing calculations with native mouse events...'
+print('Doing calculations with native mouse events...')
 useNativeEvents = 1
 do_some_calculations_with_clicks()
 
-print('Doing calculations with accessibility actions...'
+print('Doing calculations with accessibility actions...')
 useNativeEvents = 0
 do_some_calculations_with_clicks()
 
 useNativeEvents = 1
-print('Doing calculations with native keystrokes...'
-do_some_calculations_with_keystrokes();
+print('Doing calculations with native keystrokes...')
+do_some_calculations_with_keystrokes()
 
 # quit the webdriver instance
-print('Quitting the WebDriver session'
+print('Quitting the WebDriver session')
 driver.quit()
