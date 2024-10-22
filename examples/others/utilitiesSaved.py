@@ -27,14 +27,14 @@ def startWebDriverSession(hostURL, cookies):
     capabilities = desiredCapabilities
     if cookies:
         capabilities['cookies'] = cookies
-    print 'Starting the WebDriver session at ' + hostURL + 'capabilities:'
-    print capabilities
+    print('Starting the WebDriver session at ' + hostURL + 'capabilities:')
+    print(capabilities)
     try:
         driver = webdriver.Remote( command_executor=hostURL, desired_capabilities=capabilities)
     except Exception as e:
-        print 'Exception in startWebDriverSession:', e
-        print 'Make sure AppiumForMac is running.'
-        return;
+        print('Exception in startWebDriverSession:', e)
+        print('Make sure AppiumForMac is running.')
+        return
 
     return driver
 
@@ -146,7 +146,7 @@ def selectMenuItemFromUIElement(driver, parentAXPath, menuItemTitles, lastItemOp
     
     # If we did not select from the visible menu, press esc to cancel menu selection.
     if len(elementAXPath) == 0:
-        print "len(elementAXPath) == 0. Pressing escape."
+        print('len(elementAXPath) == 0. Pressing escape.')
         ActionChains(driver).send_keys(Keys.ESCAPE).perform()
     
     return elementAXPath

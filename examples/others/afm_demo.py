@@ -8,7 +8,7 @@ import time
 import utilities
 import dock_demo
 
-print 'Starting the WebDriver session'
+print('Starting the WebDriver session')
 
 #cookies = [
 #           {'name': 'loop_delay', 'value': 1.000},
@@ -25,7 +25,7 @@ httpHost = 'http://localhost:4622/wd/hub'
 
 global driver
 driver = utilities.startWebDriverSession(httpHost, None)
-print driver
+print(driver)
 
 
 def prepareForDemo():
@@ -102,7 +102,7 @@ try:
 #    demoDiagnosticsDirectory()
 #    demoScreenShotOnError()
 except Exception as e:
-    print 'Exception in afm_demo: ', e
+    print('Exception in afm_demo: ', e)
 finally:
     driver.get("TextEdit")
     closeDemoWindows()
@@ -110,6 +110,6 @@ finally:
 
 
 # quit the webdriver instance
-print 'Quitting the WebDriver session'
+print('Quitting the WebDriver session')
 driver.quit()
 

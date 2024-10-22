@@ -36,11 +36,11 @@ positionBtn = 0
 minimizePopUp = 0
 
 def openDockSettings():
-    print 'openDockSettings'
+    print('openDockSettings')
     utilities.openSystemPreferencesPane(driver, "Dock")
 
 def configureDockSettings():
-    print 'configureDockSettings'
+    print('configureDockSettings')
 #    magChkbx = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='clear']")
 #    magSlider = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='add']")
 #    showHideChkbx = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='equals']")
@@ -50,7 +50,7 @@ def configureDockSettings():
 
 
 def restoreDockSettings():
-    print 'restoreDockSettings'
+    print('restoreDockSettings')
 #     openDockSettings()
 #    magChkbx = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='clear']")
 #    magSlider = driver.find_element_by_xpath(basicGroupPath + "/AXButton[@AXDescription='add']")
@@ -60,13 +60,13 @@ def restoreDockSettings():
     utilities.selectMenuItemFromMenuBar(driver, "System Preferences", ["Quit System Preferences"], "")
 
 def performDemo():
-    print 'Starting the Dock demo'
+    print('Starting the Dock demo')
     try:
         utilities.selectMenuItemFromDock(driver, "System Preferences", ["Time Machine"], "")
 #         openDockSettings()
 #         configureDockSettings()
     except Exception as e:
-        print 'Exception in dock_demo: ', e
+        print('Exception in dock_demo: ', e)
 #     finally:
 #         restoreDockSettings()
 #         utilities.selectMenuItemFromMenuBar(driver, "System Preferences", ["Quit System Preferences"], "")

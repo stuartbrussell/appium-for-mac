@@ -17,7 +17,7 @@ global bodyWindowL
 global bodyWindowR
 global commentsWindow
 
-print 'Starting the WebDriver session'
+print('Starting the WebDriver session')
 
 defaultLoopDelay_sec = 1.00
 defaultCommandDelay_sec = 0.100
@@ -40,7 +40,7 @@ driver = webdriver.Remote( command_executor='http://localhost:4622/wd/hub', desi
 def setFonts():
     window = utilities.findElementByXPath(driver, "/AXApplication[@AXTitle='TextEdit']/AXWindow[@AXTitle='Fonts']")
     if window == None:
-        print "No fonts window!"
+        print('No fonts window!')
         return False
     driver.switch_to.window
     driver.set_window_position(100, 100, "current")
@@ -103,7 +103,7 @@ def createWindow(x, y, width, height):
     
     window = utilities.findElementByXPath(driver, "/AXApplication[@AXTitle='TextEdit']/AXWindow[0]")
     if window == None:
-        print "No front window!"
+        print('No front window!')
         return False
     driver.switch_to.window
     
@@ -117,11 +117,11 @@ def dragWordInTextView(view, viewOffsetX, viewOffsetY, dragOffsetX, dragOffsetY)
     time.sleep(0.5) # avoid unwanted triple-click
     
     # Save current mouse speed
-    print driver.get_cookies()
+    print(driver.get_cookies())
     savedMouseCookie = driver.get_cookie('mouse_speed')
-    print savedMouseCookie
+    print(savedMouseCookie)
     driver.add_cookie({'name': 'mouse_speed', 'value': 10})
-    print driver.get_cookies()
+    print(driver.get_cookies())
     
     ActionChains(driver).click_and_hold().perform()
     time.sleep(1.5) # give time for the dragging session to start (cursor == arrow)
@@ -185,7 +185,7 @@ def createCommentsWindow():
 # Given a window, clicks in its text view, clears the text view.
 # Returns: the text view
 def clickAndClearWindowTextView(window):
-    print "clickAndClearWindowTextView: " + window.get_attribute("AXTitle")
+    print('clickAndClearWindowTextView: ' + window.get_attribute("AXTitle"))
     action = ActionChains(driver).click(window)
     action.key_down(Keys.COMMAND).send_keys("a").key_up(Keys.COMMAND).send_keys(Keys.BACKSPACE).perform()
     textView = utilities.findElementByXPath(driver, "/AXApplication/AXWindow[0]/AXScrollArea[0]/AXTextArea[@AXIdentifier='First Text View']")
@@ -268,7 +268,7 @@ def closeDemoWindows():
             else:
                 continue
     except Exception as e:
-        print e
+        print(e)
 
 # Development hack to close TextEdit windows and click Don't Save until there are no more windows.
 # lastWindowtitle: the name of the window that will stop this method when it is in front. Supply "" to close all non-minimized windows.
@@ -276,13 +276,13 @@ def closeWithoutSaving(lastWindowtitle):
     while True:
         frontWindow = utilities.findElementByXPath(driver, "/AXApplication/AXWindow[0]")
         if frontWindow == None:
-            print "frontWindow == None"
+            print(frontWindow == None)
             break
         fwTitle = frontWindow.get_attribute("AXTitle")
-        print fwTitle
+        print(fwTitle)
         if fwTitle == lastWindowtitle:
             break
-        print fwTitle
+        print(fwTitle)
         ActionChains(driver).key_down(Keys.COMMAND).send_keys("w").key_up(Keys.COMMAND).perform()
         dontSaveButton = utilities.existsElementByXPath(driver, "/AXApplication/AXWindow[0]/AXSheet[0]/AXButton[@AXTitle='Don’t Save']")
         if dontSaveButton:
@@ -326,6 +326,6 @@ finally:
 
 
 # quit the webdriver instance
-print 'Quitting the WebDriver session'
+print('Quitting the WebDriver session')
 driver.quit()
 

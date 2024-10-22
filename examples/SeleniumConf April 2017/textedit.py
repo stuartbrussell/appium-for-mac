@@ -101,6 +101,6 @@ ActionChains(driver).key_down(Keys.COMMAND).send_keys('q').key_up(Keys.COMMAND).
 
 
 # quit the webdriver instance
-print 'Quitting the WebDriver session'
+print('Quitting the WebDriver session'
 driver.quit()
 

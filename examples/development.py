@@ -13,11 +13,11 @@ import utilities
 
 
 
-print 'Starting the WebDriver session'
+print('Starting the WebDriver session')
 desiredCapabilities = {'platform':'Mac', 'commandDelay':50, 'loopDelay':0, 'implicitTimeout':utilities.defaultImplicitTimeout_sec * 1000, 'mouseMoveSpeed':60, 'diagnosticsDirectoryLocation':'~/Desktop/', 'screenShotOnError':1}
 driver = webdriver.Remote( command_executor='http://localhost:4622/wd/hub', desired_capabilities=desiredCapabilities)
 
-print driver.page_source()
+print(driver.page_source())
 
 #time.sleep(5)
 #driver.get("Calculator")
@@ -137,5 +137,5 @@ print driver.page_source()
 
 
 # quit the webdriver instance
-print 'Quitting the WebDriver session'
+print('Quitting the WebDriver session')
 driver.quit()
